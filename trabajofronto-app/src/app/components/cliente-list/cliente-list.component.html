@@ -1,0 +1,51 @@
+<div class="d-flex align-items-center justify-content-between gap-2 flex-wrap mt-5 mb-4">
+  <h2 class="section-title">Clientes</h2>
+
+  <div class="d-flex align-items-center flex-wrap gap-3 gap-sm-5">
+    <p class="m-0 total-spent-text">Total Clientes: {{ total }}</p>
+    <a class="btn btn-primary" routerLink="/clientes/nuevo">Agregar Cliente</a>
+  </div>
+</div>
+
+<div class="table-responsive mb-5">
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Tipo de documento</th>
+        <th scope="col">Numero de documento</th>
+        <th scope="col">Nombre</th>
+        <th scope="col">Apellido</th>
+        <th scope="col">Celular</th>
+        <th scope="col">Correo</th>
+        <th scope="col" width="180">Fecha de registro</th>
+        <th scope="col" class="table-head-action"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <ng-container *ngIf="clientes.length; else emptyMessage">
+        <tr *ngFor="let cliente of clientes">
+          <td>{{ cliente.id }}</td>
+          <td>{{ cliente.doc_type }}</td>
+          <td>{{ cliente.doc_number }}</td>
+          <td>{{ cliente.first_name }}</td>
+          <td>{{ cliente.last_name }}</td>
+          <td>{{ cliente.phone }}</td>
+          <td>{{ cliente.email }}</td>
+          <td>{{ cliente.created_at| date:'dd/MM/Y' }}</td>
+          <td class="table-data-action">
+            <div>
+              <a [routerLink]="['/clientes', cliente.id, 'editar']"><i class="ri-edit-box-line"></i></a>
+              <button class="btn btn-link p-0" (click)="deleteCliente(cliente.id)"><i class="ri-delete-bin-2-line"></i></button>
+            </div>
+          </td>
+        </tr>
+      </ng-container>
+      <ng-template #emptyMessage>
+        <tr>
+          <td colspan="6">No hay datos para mostrar</td>
+        </tr>
+      </ng-template>
+    </tbody>
+  </table>
+</div>

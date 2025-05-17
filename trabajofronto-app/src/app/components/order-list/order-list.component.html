@@ -1,0 +1,55 @@
+<div class="d-flex align-items-center justify-content-between gap-2 flex-wrap mt-5 mb-4">
+  <h2 class="section-title">Orders</h2>
+
+  <div class="d-flex align-items-center flex-wrap gap-3 gap-sm-5">
+    <p class="m-0 total-spent-text">Total Orders: {{ total }}</p>
+    <a class="btn btn-primary" routerLink="/orders/nuevo">Iniciar una nueva orden</a>
+  </div>
+</div>
+
+<div class="table-responsive mb-5">
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">ID</th>
+        <th scope="col">Cliente</th>
+        <th scope="col">Typo de voucher</th>
+        <th scope="col">Numero de voucher</th>
+        <th scope="col">PDF</th>
+        <th scope="col" width="180">Fecha de registro</th>
+        <th scope="col" class="table-head-action"></th>
+      </tr>
+    </thead>
+    <tbody>
+      <ng-container *ngIf="orders.length; else emptyMessage">
+        <tr *ngFor="let order of orders">
+          <td>{{ order.id }}</td>
+          <td>{{ order.cliente_id }}</td>
+          <td [ngSwitch]="order.voucher_type">
+           <span *ngSwitchCase="'B'">Boleta</span>
+           <span *ngSwitchDefault>Factura</span>
+          </td>
+          <td>{{ order.voucher_number }}</td>
+          <td>
+             <a *ngIf="order.voucher_pdf" [href]="order.voucher_pdf" target="_blank" rel="noopener noreferrer">
+             <i class="bi bi-file-earmark-pdf-fill text-danger" style="font-size: 1.5rem;"></i>
+             </a>
+             <span *ngIf="!order.voucher_pdf" class="text-muted">—</span>
+          </td>
+          <td>{{ order.created_at| date:'dd/MM/Y' }}</td>
+          <td class="table-data-action">
+            <div>
+              <!-- <a [routerLink]="['/orders', order.id, 'editar']"><i class="ri-edit-box-line"></i></a> -->
+              <button class="btn btn-link p-0" (click)="deleteOrder(order.id)"><i class="ri-delete-bin-2-line"></i></button>
+            </div>
+          </td>
+        </tr>
+      </ng-container>
+      <ng-template #emptyMessage>
+        <tr>
+          <td colspan="6">No hay datos para mostrar</td>
+        </tr>
+      </ng-template>
+    </tbody>
+  </table>
+</div>

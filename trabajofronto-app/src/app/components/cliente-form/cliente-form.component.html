@@ -1,0 +1,72 @@
+<div class="d-flex align-items-center justify-content-between flex-wrap mt-5 mb-4 border-bottom">
+  <h2 class="section-title mb-4">{{ getFormTitle() }}</h2>
+  <div class="d-flex gap-2 mb-3">
+    <a class="btn btn-outline-secondary" routerLink="/clientes">Cancelar</a>
+    <button type="button" class="btn btn-primary" (click)="saveCliente()" [disabled]="this.clienteForm.invalid">Guardar Cliente</button>
+  </div>
+</div>
+
+<form class="mb-5" [formGroup]="clienteForm" (ngSubmit)="saveCliente()">
+
+  <div class="mb-3">
+    <label for="doc_type" class="form-label">Tipo de documento</label>
+    <select class="form-select {{ hasError('doc_type') ? 'is-invalid' : '' }}"  formControlName="doc_type" id="doc_type" [(ngModel)]="tipoSeleccionado" name="doc_type" (change)="actualizarMaxLength()" placeholder="Seleccione el tipo de Documento">
+      <option [value]="i+1" [selected]="i==0"
+      *ngFor="let t of listaTipoDocumento; let i=index">{{t}}</option>
+    </select>
+    <div class="invalid-feedback" [ngSwitch]="getCurrentError('doc_type')">
+      <span *ngSwitchCase="'required'">El campo tipo es requerido</span>
+    </div>
+  </div>
+
+  <div class="mb-3">
+    <label for="doc_number" class="form-label">Numero de documento</label>
+    <input type="text" formControlName="doc_number" class="form-control {{ hasError('doc_number') ? 'is-invalid' : '' }}" [(ngModel)]="numeroDocumento" id="doc_number"  [attr.minLength]="maxLength"  [attr.maxLength]="maxLength" placeholder="Ingrese el numero del documento">
+   <div class="invalid-feedback" [ngSwitch]="getCurrentError('doc_number')">
+      <span *ngSwitchCase="'required'">El campo tipo es requerido</span>
+      <span *ngSwitchCase="'minlength'">El campo tipo debe contener  {{ maxLength }} caracteres como minimo</span>
+      <span *ngSwitchCase="'maxlength'">El campo tipo debe contener  {{ maxLength }} caracteres como máximo</span>
+    </div>
+  </div>
+
+  <div class="mb-3">
+    <label for="first_name" class="form-label">Ingrese su Nombre</label>
+    <input type="text" formControlName="first_name" class="form-control {{ hasError('first_name') ? 'is-invalid' : '' }}"  id="first_name"  placeholder="Ingrese su nombre">
+   <div class="invalid-feedback" [ngSwitch]="getCurrentError('first_name')">
+      <span *ngSwitchCase="'required'">El campo tipo es requerido</span>
+      <span *ngSwitchCase="'maxlength'">El campo tipo debe contener  {{ 20 }} caracteres como máximo</span>
+    </div>
+  </div>
+
+   <div class="mb-3">
+    <label for="last_name" class="form-label">Ingrese su Apellido</label>
+    <input type="text" formControlName="last_name" class="form-control {{ hasError('last_name') ? 'is-invalid' : '' }}"  id="last_name"  placeholder="Ingrese su apellido">
+   <div class="invalid-feedback" [ngSwitch]="getCurrentError('last_name')">
+      <span *ngSwitchCase="'required'">El campo tipo es requerido</span>
+      <span *ngSwitchCase="'maxlength'">El campo tipo debe contener  {{ 20 }} caracteres como máximo</span>
+    </div>
+  </div>
+
+   <div class="mb-3">
+    <label for="phone" class="form-label">Ingrese su numero</label>
+    <input type="text" formControlName="phone" class="form-control {{ hasError('phone') ? 'is-invalid' : '' }}"  id="phone"  placeholder="Ingrese su numero">
+   <div class="invalid-feedback" [ngSwitch]="getCurrentError('phone')">
+      <span *ngSwitchCase="'pattern'">El campo solo acepta numeros</span>
+      <span *ngSwitchCase="'required'">El campo tipo es requerido</span>
+      <span *ngSwitchCase="'minlength'">El campo tipo debe contener  {{ 9 }} caracteres como minimo</span>
+      <span *ngSwitchCase="'maxlength'">El campo tipo debe contener  {{ 9 }} caracteres como máximo</span>
+    </div>
+  </div>
+
+  <div class="mb-3">
+    <label for="email" class="form-label">Ingrese su email</label>
+    <input type="text" formControlName="email" class="form-control {{ hasError('email') ? 'is-invalid' : '' }}"  id="email"  placeholder="Ingrese su email">
+   <div class="invalid-feedback" [ngSwitch]="getCurrentError('email')">
+      <span *ngSwitchCase="'email'">Ingrese email valido</span>
+      <span *ngSwitchCase="'required'">El campo tipo es requerido</span>
+    </div>
+  </div>
+
+
+  <button type="submit" class="btn btn-primary" [disabled]="this.clienteForm.invalid">Guardar Cliente</button>
+</form>
