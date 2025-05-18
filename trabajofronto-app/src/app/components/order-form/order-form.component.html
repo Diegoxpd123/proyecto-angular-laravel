@@ -1,113 +1,87 @@
 <form class="mb-5" [formGroup]="orderForm" (ngSubmit)="saveOrder()">
   <div class="container py-4">
-    <h3 class="mb-4">Registrar Venta</h3>
+    <h3 class="mb-4 text-center text-md-start">Registrar Venta</h3>
 
-    <!-- Selección de cliente y tipo de orden -->
-    <div class="row mb-3 g-3">
-      <div class="col-12 col-md-6">
+    <div class="row g-4 mb-3">
+      <div class="col-md-6">
         <label for="cliente_id" class="form-label">Cliente</label>
         <select
           id="cliente_id"
-          name="cliente_id"
-          class="form-select {{ hasError('cliente_id') ? 'is-invalid' : '' }}"
+          class="form-select"
+          [ngClass]="{ 'is-invalid': hasError('cliente_id') }"
           formControlName="cliente_id"
         >
-          <option [value]="null" disabled selected>Seleccione un cliente</option>
+          <option value="" disabled>Seleccione un cliente</option>
           <option *ngFor="let cliente of clientes" [value]="cliente.id">
             {{ cliente.first_name }} ({{ cliente.doc_number }})
           </option>
         </select>
-        <div class="invalid-feedback" *ngIf="hasError('cliente_id')">
-          El campo cliente es requerido
-        </div>
+        <div class="invalid-feedback" *ngIf="hasError('cliente_id')">El campo cliente es requerido</div>
       </div>
 
-      <div class="col-12 col-md-6">
+      <div class="col-md-6">
         <label for="voucher_type" class="form-label">Tipo de Orden</label>
         <select
           id="voucher_type"
-          name="voucher_type"
-          class="form-select {{ hasError('voucher_type') ? 'is-invalid' : '' }}"
+          class="form-select"
+          [ngClass]="{ 'is-invalid': hasError('voucher_type') }"
           formControlName="voucher_type"
         >
           <option value="B">Boleta</option>
           <option value="F">Factura</option>
         </select>
-        <div class="invalid-feedback" *ngIf="hasError('voucher_type')">
-          El campo tipo de orden es requerido
-        </div>
+        <div class="invalid-feedback" *ngIf="hasError('voucher_type')">El campo tipo de orden es requerido</div>
       </div>
     </div>
 
-    <!-- Búsqueda de libros -->
-    <div class="row mb-3 g-3">
-      <div class="col-12 col-md-6">
-        <input
-          type="text"
-          class="form-control"
-          placeholder="Buscar libro por nombre"
-          (input)="filtrarLibros($any($event.target).value)"
-        />
+    <div class="row g-4 mb-3">
+      <div class="col-md-6">
+        <input type="text" class="form-control" placeholder="Buscar libro por nombre" (input)="filtrarLibrosISBN($any($event.target).value)" />
       </div>
-
-      <div class="col-12 col-md-6">
-        <input
-          type="text"
-          class="form-control"
-          placeholder="Buscar libro por ISBN"
-          (input)="filtrarLibrosISBN($any($event.target).value)"
-        />
+      <div class="col-md-6">
+        <input type="text" class="form-control" placeholder="Buscar libro por ISBN" (input)="filtrarLibrosISBN($any($event.target).value)" />
       </div>
     </div>
 
-    <!-- Scanner código ISBN -->
-    <div class="mb-3">
-      <label class="form-label d-block">Escanear código ISBN</label>
-      <div class="d-flex justify-content-center">
-        <zxing-scanner
-          [device]="currentDevice ?? undefined"
-          (camerasFound)="onCamerasFound($event)"
-          (scanSuccess)="onCodeScanned($event)"
-          [formats]="allowedFormats"
-          [torch]="torchEnabled"
-          style="width: 100%; max-width: 400px; height: auto; aspect-ratio: 16 / 9; border-radius: 8px; overflow: hidden;"
-        ></zxing-scanner>
+    <div class="mb-4 text-center">
+      <label class="form-label">Escanear código ISBN</label>
+       <div class="d-flex justify-content-center">
+      <zxing-scanner
+        [device]="currentDevice ?? undefined"
+        (camerasFound)="onCamerasFound($event)"
+        (scanSuccess)="onCodeScanned($event)"
+        [formats]="allowedFormats"
+        [torch]="torchEnabled"
+        style="width: 100%; max-width: 500px; aspect-ratio: 16/9; border-radius: 0.75rem; overflow: hidden;"
+      ></zxing-scanner>
       </div>
     </div>
 
-    <!-- Catálogo de libros -->
-    <h5 class="mt-4 mb-3">Seleccionar libros</h5>
-    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-3">
+    <h5 class="mb-3">Seleccionar libros</h5>
+    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 g-4">
       <div class="col" *ngFor="let libro of librosFiltrados">
-        <div class="card h-100 text-center">
+        <div class="card h-100 shadow-sm">
           <img
             [src]="libro.image"
             (error)="libro.image = 'assets/img/no-image.jpg'"
             class="card-img-top"
             style="height: 150px; object-fit: cover;"
-            alt="Portada"
+            alt="Portada de {{ libro.name }}"
           />
-          <div class="card-body p-2">
-            <h6 class="card-title">{{ libro.name }}</h6>
-            <small class="text-muted">{{ libro.isbn }}</small>
-            <p class="mb-1 fw-bold">S/ {{ libro.price | number:'1.2-2' }}</p>
-            <button
-              type="button"
-              class="btn btn-sm btn-primary w-100"
-              (click)="agregarAlCarrito(libro)"
-            >
-              Agregar al carrito
-            </button>
+          <div class="card-body p-3 text-center">
+            <h6 class="card-title mb-1">{{ libro.name }}</h6>
+            <small class="text-muted d-block mb-2">{{ libro.isbn }}</small>
+            <div class="fw-bold mb-2">S/ {{ libro.price | number:'1.2-2' }}</div>
+            <button type="button" class="btn btn-sm btn-outline-primary w-100" (click)="agregarAlCarrito(libro)">Agregar al carrito</button>
           </div>
         </div>
       </div>
     </div>
 
-    <!-- Carrito de compras -->
-    <div *ngIf="details.length > 0" class="mt-4">
+    <div *ngIf="details.length > 0" class="mt-5">
       <h5>Carrito</h5>
       <div class="table-responsive">
-        <table class="table table-bordered table-sm align-middle mb-0">
+        <table class="table table-bordered table-sm align-middle">
           <thead class="table-light">
             <tr>
               <th>Libro</th>
@@ -124,17 +98,17 @@
               <td>
                 <input
                   type="number"
-                  [value]="item.quantity"
-                  (input)="item.quantity = +$any($event.target).value"
                   class="form-control form-control-sm"
-                  min="1"
+                    [value]="item.quantity"
+                  (input)="item.quantity = +$any($event.target).value"
+
                 />
               </td>
               <td>S/ {{ (item.price * item.quantity) | number:'1.2-2' }}</td>
               <td>
                 <button
                   type="button"
-                  class="btn btn-sm btn-danger"
+                  class="btn btn-sm btn-outline-danger"
                   (click)="removerDelCarrito(item)"
                   aria-label="Eliminar libro del carrito"
                 >
@@ -153,18 +127,19 @@
       </div>
     </div>
 
-    <!-- Botón finalizar -->
     <div class="mt-4 d-flex justify-content-end">
       <button
         type="submit"
-        class="btn btn-primary"
+        class="btn btn-primary d-flex align-items-center gap-2"
         [disabled]="orderForm.invalid || isLoading"
       >
-        <span *ngIf="!isLoading">Finalizar compra</span>
-        <span *ngIf="isLoading">
+        <ng-container *ngIf="!isLoading; else loading">
+          <i class="bi bi-cart-check-fill"></i> Finalizar compra
+        </ng-container>
+        <ng-template #loading>
           <span class="spinner-border spinner-border-sm" role="status" aria-hidden="true"></span>
           Guardando...
-        </span>
+        </ng-template>
       </button>
     </div>
   </div>
