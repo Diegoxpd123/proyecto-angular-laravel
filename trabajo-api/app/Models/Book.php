@@ -10,6 +10,6 @@ class Book extends Model
      use HasFactory;
 
         protected $table = 'books';
-        protected $fillable = ['isbn','name','stock','price','image','created_at','updated_at','is_deleted','','is_actived'];
+        protected $fillable = ['isbn','name','stock','price','image','created_at','updated_at','is_deleted','is_actived'];
 
 }
