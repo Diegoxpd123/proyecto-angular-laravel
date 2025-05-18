@@ -34,7 +34,7 @@ CREATE TABLE `books` (
   `is_deleted` int(11) NOT NULL,
   `is_actived` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=16 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -115,7 +115,7 @@ CREATE TABLE `clientes` (
   `created_at` date NOT NULL,
   `updated_at` date NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=8 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -124,7 +124,7 @@ CREATE TABLE `clientes` (
 
 LOCK TABLES `clientes` WRITE;
 /*!40000 ALTER TABLE `clientes` DISABLE KEYS */;
-INSERT INTO `clientes` VALUES (1,1,'61653319','Hassie Glover','Terrence Fisher','999939354','ed.fadel@example.net',1,0,'2025-05-17','2025-05-17'),(2,2,'79858072','Merritt West','Ms. Clarissa Crist','935299213','gibson.micaela@example.org',1,0,'2025-05-17','2025-05-17'),(3,2,'52328358','Edward Grimes','Horacio Walker','980836449','alicia.kuhn@example.net',1,0,'2025-05-17','2025-05-17'),(4,3,'42022662','Damion Ernser','Ebony Dicki','918200881','hillard74@example.org',1,0,'2025-05-17','2025-05-17'),(5,1,'79414254','Monserrat Sawayn','Jarrett Barrows','928562794','evert.oreilly@example.org',1,0,'2025-05-17','2025-05-17');
+INSERT INTO `clientes` VALUES (1,1,'61653319','Hassie Glover','Terrence Fisher','999939354','ed.fadel@example.net',1,0,'2025-05-17','2025-05-17'),(2,2,'79858072','Merritt West','Ms. Clarissa Crist','935299213','gibson.micaela@example.org',1,0,'2025-05-17','2025-05-17'),(3,2,'52328358','Edward Grimes','Horacio Walker','980836449','alicia.kuhn@example.net',1,0,'2025-05-17','2025-05-17'),(4,3,'42022662','Damion Ernser','Ebony Dicki','918200881','hillard74@example.org',1,0,'2025-05-17','2025-05-17'),(5,1,'79414254','Monserrat Sawayn','Jarrett Barrows','928562794','evert.oreilly@example.org',1,0,'2025-05-17','2025-05-17'),(6,1,'75589599','Juan','Perez','932234543','pachecoxpd@gmail.com',1,0,'2025-05-18','2025-05-18'),(7,1,'75584444','Angie','Espinoza Melendez','908384714','pachecoxpd@gmail.com',1,0,'2025-05-18','2025-05-18');
 /*!40000 ALTER TABLE `clientes` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -146,7 +146,7 @@ CREATE TABLE `details` (
   `is_deleted` int(11) NOT NULL,
   `is_actived` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -155,7 +155,7 @@ CREATE TABLE `details` (
 
 LOCK TABLES `details` WRITE;
 /*!40000 ALTER TABLE `details` DISABLE KEYS */;
-INSERT INTO `details` VALUES (1,1,2,157.96,20,'2025-05-17','2025-05-17',0,1),(2,1,6,133.71,30,'2025-05-17','2025-05-17',0,1);
+INSERT INTO `details` VALUES (1,1,2,157.96,20,'2025-05-17','2025-05-17',0,1),(2,1,6,133.71,30,'2025-05-17','2025-05-17',0,1),(3,2,1,182.57,5,'2025-05-17','2025-05-17',0,1),(4,2,2,157.96,4,'2025-05-17','2025-05-17',0,1),(5,2,3,154.9,3,'2025-05-17','2025-05-17',0,1),(6,2,8,173.18,3,'2025-05-17','2025-05-17',0,1);
 /*!40000 ALTER TABLE `details` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -291,7 +291,7 @@ CREATE TABLE `orders` (
   `is_deleted` int(11) NOT NULL,
   `is_actived` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_unicode_ci;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 --
@@ -300,7 +300,7 @@ CREATE TABLE `orders` (
 
 LOCK TABLES `orders` WRITE;
 /*!40000 ALTER TABLE `orders` DISABLE KEYS */;
-INSERT INTO `orders` VALUES (1,1,'B','B001-00001','https://hiring.pruebasgt.com/storage/2c9cba8b-8957-46ee-93c0-06a5a2d7cebe.pdf','2025-05-17','2025-05-17',0,1);
+INSERT INTO `orders` VALUES (1,1,'B','B001-00001','https://hiring.pruebasgt.com/storage/2c9cba8b-8957-46ee-93c0-06a5a2d7cebe.pdf','2025-05-17','2025-05-17',0,1),(2,7,'B','B001-00002','https://hiring.pruebasgt.com/storage/53e826b5-1be7-445c-aa70-4b9464ccb436.pdf','2025-05-18','2025-05-18',0,1);
 /*!40000 ALTER TABLE `orders` ENABLE KEYS */;
 UNLOCK TABLES;
 
@@ -429,4 +429,4 @@ UNLOCK TABLES;
 /*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
 /*!40111 SET SQL_NOTES=@OLD_SQL_NOTES */;
 
--- Dump completed on 2025-05-18 11:23:41
+-- Dump completed on 2025-05-18 14:43:27
