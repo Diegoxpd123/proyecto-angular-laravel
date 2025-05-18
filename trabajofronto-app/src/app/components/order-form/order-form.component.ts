@@ -88,7 +88,7 @@ saveOrder(): void {
     this.orderService.updateOrder(this.orderId, this.orderForm.value).subscribe(order => {
       const detallesConOrden = this.details.map(d => ({
         ...d,
-        order_id: this.orderId // usamos el mismo ID existente
+        order_id: this.orderId
       }));
 
       let detallesActualizados = 0;
@@ -146,7 +146,7 @@ saveOrder(): void {
     quantity: item.quantity
   })),
   client: {
-    type:  'D', // asegurarte que es string
+    type:  'D',
     number: String(client.doc_number),
     name: `${client.first_name} ${client.last_name || ''}`.trim()
   }
@@ -329,8 +329,6 @@ getTotalCarrito(): number {
 
   onCodeScanned(resultString: string): void {
     console.log('Código escaneado:', resultString);
-
-    // Usar el código para filtrar libros por ISBN
     this.filtrarLibrosISBN(resultString);
   }
 

@@ -11,7 +11,7 @@ class SaveBookRequest extends FormRequest
      */
     public function authorize(): bool
     {
-        return false;
+        return true;
     }
 
     /**
@@ -29,8 +29,8 @@ class SaveBookRequest extends FormRequest
             'image' => 'required|string',
             'created_at' => 'required',
             'updated_at' => 'required',
-            'is_deleted' => 'required|string',
-            'is_actived' => 'required|string'
+            'is_deleted' => 'required',
+            'is_actived' => 'required'
         ];
     }
 }

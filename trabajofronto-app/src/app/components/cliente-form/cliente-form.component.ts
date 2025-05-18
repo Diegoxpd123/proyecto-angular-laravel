@@ -46,35 +46,33 @@ export class ClienteFormComponent implements OnInit {
   }
 
     actualizarMaxLength(): void {
+  const docTypeControl = this.clienteForm.get('doc_type');
+  const docNumberControl = this.clienteForm.get('doc_number');
 
-       const doc_type = this.clienteForm.get('doc_type');
-       const doc_number = this.clienteForm.get('doc_number');
-    switch (this.tipoSeleccionado) {
-      case '1':
-        this.maxLength = 8;
-        doc_type?.setValue(1);
-        doc_number?.setValidators([Validators.required, Validators.minLength(this.maxLength)]);
-        doc_number?.updateValueAndValidity();
-        break;
-      case '2':
-        this.maxLength = 11;
-         doc_type?.setValue(2);
-        doc_number?.setValidators([Validators.required, Validators.minLength(this.maxLength)]);
-        doc_number?.updateValueAndValidity();
-        break;
-      case '3':
-        this.maxLength = 20;
-        doc_type?.setValue(3);
-        doc_number?.setValidators([Validators.required, Validators.minLength(this.maxLength)]);
-        doc_number?.updateValueAndValidity();
-        break;
-      default:
-        this.maxLength = 8;
-        doc_number?.setValidators([Validators.required, Validators.minLength(this.maxLength)]);
-        doc_number?.updateValueAndValidity();
-    }
-    this.numeroDocumento = ''; // Reinicia el valor al cambiar el tipo
-  }
+  if (!docTypeControl || !docNumberControl) return;
+
+  const tipoConfig: Record<string, { length: number; type: number }> = {
+  '1': { length: 8, type: 1 },
+  '2': { length: 11, type: 2 },
+  '3': { length: 20, type: 3 },
+  };
+
+  const config = tipoConfig[this.tipoSeleccionado] ?? tipoConfig['1'];
+
+  this.maxLength = config.length;
+  docTypeControl.setValue(config.type);
+
+  docNumberControl.setValidators([
+    Validators.required,
+    Validators.minLength(config.length),
+    Validators.maxLength(config.length),
+    Validators.pattern('^[0-9]*$')
+  ]);
+  docNumberControl.updateValueAndValidity();
+
+  this.numeroDocumento = ''; // Reiniciar campo
+}
+
 
   saveCliente(): void {
     if (this.clienteId) {
