@@ -6,28 +6,26 @@ use Illuminate\Foundation\Http\FormRequest;
 
 class SaveUsuarioTenantRequest extends FormRequest
 {
-    /**
-     * Determine if the user is authorized to make this request.
-     */
     public function authorize(): bool
     {
-        return true;
+        return true; // Puedes implementar lógica de autorización si es necesario
     }
 
-    /**
-     * Get the validation rules that apply to the request.
-     *
-     * @return array<string, \Illuminate\Contracts\Validation\ValidationRule|array<mixed>|string>
-     */
     public function rules(): array
     {
         return [
-            'usuarioid' => 'required|string',
-            'tenantid' => 'required|string',
-            'is_active' => 'required',
-            'is_deleted' => 'required',
-            'created_at' => 'required|string',
-            'updated_at' => 'required|string'
+            'tenant_id' => 'required|exists:tenants,id',
+            'user_id'   => 'required|exists:users,id',
+        ];
+    }
+
+    public function messages(): array
+    {
+        return [
+            'tenant_id.required' => 'El campo tenant_id es obligatorio.',
+            'tenant_id.exists'   => 'El tenant especificado no existe.',
+            'user_id.required'   => 'El campo user_id es obligatorio.',
+            'user_id.exists'     => 'El usuario especificado no existe.',
         ];
     }
 }
