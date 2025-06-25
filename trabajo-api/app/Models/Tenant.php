@@ -3,24 +3,43 @@
 namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
-use Tenancy\Affects\Connections\ConnectionResolver;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Tenancy\Identification\Contracts\Tenant as TenantContract;
 use Tenancy\Identification\Concerns\AllowsTenantIdentification;
 
 class Tenant extends Model implements TenantContract
 {
-    use AllowsTenantIdentification;
+    use AllowsTenantIdentification, SoftDeletes;
 
-    protected $fillable = ['tid', 'name', 'database'];
-    protected $connection = 'mysql';
+    protected $fillable = [
+        'tipo_documento',
+        'nro_documento',
+        'plan_ventaid',
+        'razonsocial',
+        'nombre_contacto',
+        'logo',
+        'slug',
+        'direccion',
+        'contacto',
+        'telefono',
+        'email',
+    ];
+
+    protected $connection = 'mysql'; // conexión central
 
     public function getTenantKeyName(): string
     {
-        return 'tid'; // El campo clave identificadora del tenant
+        return 'id'; // clave primaria de la tabla
     }
 
     public function getTenantKey(): string
     {
         return (string) $this->getAttribute($this->getTenantKeyName());
+    }
+
+    // Relaciones
+    public function plan_venta()
+    {
+        return $this->belongsTo(PlanVenta::class, 'plan_ventaid');
     }
 }

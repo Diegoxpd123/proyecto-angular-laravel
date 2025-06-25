@@ -12,7 +12,7 @@ class TenantController extends Controller
     {
         $tenantId = $request->input('tenant_id');
 
-        $tenant = Tenant::where('tid', $tenantId)->first();
+        $tenant = Tenant::where('id', $tenantId)->first();
 
         if (!$tenant) {
             return response()->json(['message' => 'Tenant no encontrado'], 404);

@@ -4,11 +4,25 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Cliente extends Model
 {
+    use HasFactory, SoftDeletes;
 
-        use HasFactory;
-        protected $table = 'clientes';
-        protected $fillable = ['doc_type','doc_number','first_name','last_name','phone','email','is_active','is_deleted','created_at','updated_at'];
+    protected $table = 'clientes';
+
+    protected $fillable = [
+        'tipo_documento',
+        'numero_documento',
+        'nombre',
+        'telefono',
+        'email',
+        'direccion',
+    ];
+
+    public function orders()
+    {
+        return $this->hasMany(Order::class, 'clienteid');
+    }
 }

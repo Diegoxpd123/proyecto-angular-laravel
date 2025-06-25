@@ -6,6 +6,8 @@ use Closure;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Models\Tenant;
+use Illuminate\Support\Facades\Log;
+
 
 class IdentifyTenant
 {
@@ -17,7 +19,7 @@ class IdentifyTenant
             return response()->json(['message' => 'No hay tenant en la sesión'], 400);
         }
 
-        $tenant = Tenant::where('tid', $tid)->first();
+        $tenant = Tenant::where('id', $tid)->first();
 
         if (!$tenant) {
             return response()->json(['message' => 'Tenant no válido'], 404);
@@ -25,6 +27,8 @@ class IdentifyTenant
 
         $dbName = $tenant->database;
 
+
+        Log::info('🌐 Middleware tenant.db ejecutado ' . $dbName);
         // Crear la base si no existe
         DB::statement("CREATE DATABASE IF NOT EXISTS `$dbName`");
 

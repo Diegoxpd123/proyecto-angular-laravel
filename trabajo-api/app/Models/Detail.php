@@ -4,14 +4,30 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\SoftDeletes;
 
 class Detail extends Model
 {
+    use HasFactory, SoftDeletes;
 
-     use HasFactory;
+    protected $table = 'details';
 
-        protected $table = 'details';
-        protected $fillable = ['order_id','book_id','price','quantity','created_at','updated_at','is_deleted','','is_actived'];
+    protected $fillable = [
+        'orderid',
+        'name',
+        'image1',
+        'image2',
+        'image3',
+        'talla',
+        'precio',
+        'cantidad',
+    ];
 
-
+    /**
+     * Relación: Un detalle pertenece a una orden
+     */
+    public function order()
+    {
+        return $this->belongsTo(Order::class, 'orderid');
+    }
 }
