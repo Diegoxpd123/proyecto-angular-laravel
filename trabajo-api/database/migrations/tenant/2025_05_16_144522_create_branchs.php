@@ -13,15 +13,10 @@ return new class extends Migration
     {
         Schema::create('branchs', function (Blueprint $table) {
             $table->id();
-            $table->string('isbn', 13);
-            $table->string('name', 100);
-            $table->integer('stock');
-            $table->float('price');
-            $table->string('image', 100);
-            $table->date('created_at');
-            $table->date('updated_at');
-            $table->integer('is_deleted');
-            $table->integer('is_actived');
+            $table->string('name', 250);
+            $table->string('descripcion', 500);
+            $table->timestamps();
+            $table->softDeletes();
         });
     }
 

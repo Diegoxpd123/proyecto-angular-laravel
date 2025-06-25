@@ -13,14 +13,16 @@ return new class extends Migration
     {
         Schema::create('details', function (Blueprint $table) {
             $table->id();
-            $table->integer('order_id');
-            $table->integer('book_id');
-            $table->float('price');
-            $table->integer('quantity');
-            $table->date('created_at');
-            $table->date('updated_at');
-            $table->integer('is_deleted');
-            $table->integer('is_actived');
+            $table->foreignId('orderid')->constrained('orders')->onDelete('cascade');
+            $table->string('name', 100);
+            $table->string('image1', 250);
+            $table->string('image2', 250);
+            $table->string('image3', 250);
+            $table->string('talla', 100);
+            $table->float('precio');
+            $table->integer('cantidad');
+            $table->timestamps();
+            $table->softDeletes();
         });
     }
 

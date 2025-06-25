@@ -13,15 +13,13 @@ return new class extends Migration
     {
         Schema::create('products', function (Blueprint $table) {
             $table->id();
-            $table->string('isbn', 13);
+            $table->integer('categoriaid')->nullable();
             $table->string('name', 100);
-            $table->integer('stock');
-            $table->float('price');
-            $table->string('image', 100);
-            $table->date('created_at');
-            $table->date('updated_at');
-            $table->integer('is_deleted');
-            $table->integer('is_actived');
+            $table->string('image1', 250)->nullable();
+            $table->string('image2', 250)->nullable();
+            $table->string('image3', 250)->nullable();
+            $table->timestamps();
+            $table->softDeletes();
         });
     }
 

@@ -19,9 +19,7 @@ return new class extends Migration
             $table->string('razonsocial');
             $table->string('nombre_contacto');
             $table->string('logo')->nullable();
-            $table->string('slug')->unique(); // para rutas o subdominios
-            $table->foreignId('paisid')->constrained('countries')->onDelete('cascade');
-            $table->foreignId('regionid')->constrained('country_regions')->onDelete('cascade');
+            $table->string('slug')->unique();
             $table->string('direccion');
             $table->string('contacto')->nullable();
             $table->string('telefono');

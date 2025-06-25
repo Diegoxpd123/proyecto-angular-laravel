@@ -13,14 +13,10 @@ return new class extends Migration
     {
         Schema::create('orders', function (Blueprint $table) {
             $table->id();
-             $table->integer('cliente_id');
-            $table->string('voucher_type',1);
-            $table->string('voucher_number',20);
-            $table->string('voucher_pdf',200);
-            $table->date('created_at');
-            $table->date('updated_at');
-            $table->integer('is_deleted');
-            $table->integer('is_actived');
+            $table->foreignId('clienteid')->constrained('clientes')->onDelete('cascade');
+            $table->float('total');
+            $table->timestamps();
+            $table->softDeletes();
         });
     }
 
