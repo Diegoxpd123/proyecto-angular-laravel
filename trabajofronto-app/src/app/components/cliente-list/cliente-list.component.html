@@ -1,4 +1,5 @@
-<div class="d-flex flex-column flex-md-row align-items-start align-items-md-center justify-content-between gap-3 mt-5 mb-4 border-bottom pb-2">
+<div
+  class="d-flex flex-column flex-md-row align-items-start align-items-md-center justify-content-between gap-3 mt-5 mb-4 border-bottom pb-2">
   <h2 class="section-title m-0">Clientes</h2>
 
   <div class="d-flex flex-wrap align-items-center gap-3">
@@ -7,6 +8,12 @@
       <i class="ri-user-add-line me-1"></i> Agregar Cliente
     </a>
   </div>
+</div>
+<div class="mb-3">
+  <label for="tenantSelect" class="form-label">Seleccionar empresa (tenant):</label>
+  <select id="tenantSelect" class="form-select w-auto d-inline-block" (change)="onTenantChange($event)">
+    <option *ngFor="let t of tenants" [value]="t.tid" [selected]="t.tid === selectedTenant">{{ t.name }}</option>
+  </select>
 </div>
 
 <div class="table-responsive mb-5 shadow-sm rounded">
@@ -37,20 +44,12 @@
           <td>{{ cliente.created_at | date: 'dd/MM/y' }}</td>
           <td class="text-end">
             <div class="d-flex justify-content-end gap-2">
-              <a
-                [routerLink]="['/clientes', cliente.id, 'editar']"
-                class="btn btn-sm btn-outline-secondary"
-                title="Editar cliente"
-                aria-label="Editar"
-              >
+              <a [routerLink]="['/clientes', cliente.id, 'editar']" class="btn btn-sm btn-outline-secondary"
+                title="Editar cliente" aria-label="Editar">
                 <i class="ri-edit-2-line"></i>
               </a>
-              <button
-                class="btn btn-sm btn-outline-danger"
-                title="Eliminar cliente"
-                aria-label="Eliminar"
-                (click)="deleteCliente(cliente.id)"
-              >
+              <button class="btn btn-sm btn-outline-danger" title="Eliminar cliente" aria-label="Eliminar"
+                (click)="deleteCliente(cliente.id)">
                 <i class="ri-delete-bin-line"></i>
               </button>
             </div>

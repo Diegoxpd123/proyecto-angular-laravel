@@ -243,9 +243,9 @@ saveOrder(): void {
       this.details = details.filter(d => d.order_id === this.orderId);
     });
 
-    this.clienteService.getClientes().subscribe(clientes => {
-      this.clientes = clientes;
-    });
+    //this.clienteService.getClientes().subscribe(clientes => {
+      //this.clientes = clientes;
+    //});
 
     this.bookService.getBooks().subscribe(books => {
       this.libros = books;

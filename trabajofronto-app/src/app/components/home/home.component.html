@@ -1,18 +1,46 @@
 <section class="container py-5 text-center">
-  <!-- Logo o imagen -->
   <img src="assets/img/logo-libro.jpg" alt="Logo Librería" width="120" />
+  <h1 class="fw-bold text-primary mb-3">Iniciar sesión</h1>
 
-  <!-- Título principal -->
-  <h1 class="fw-bold text-primary mb-3">Sistema de Punto de Venta - Librería</h1>
-  <p class="lead mb-4">Registra, gestiona y consulta ventas de libros de forma rápida y eficiente.</p>
+  <form (ngSubmit)="login()" [formGroup]="loginForm" (ngSubmit)="login()" class="mx-auto" style="max-width: 400px;">
+    <div class="mb-3 text-start">
+      <label>Email</label>
+      <input type="email" id="email" formControlName="email" class="form-control" name="email" required />
+    </div>
 
-  <!-- Acciones -->
-  <div class="d-flex flex-column flex-sm-row justify-content-center gap-3 mb-5">
-    <a class="btn btn-success btn-lg" routerLink="/orders/nuevo">
-      <i class="bi bi-cart-plus-fill me-2"></i> Iniciar nueva venta
-    </a>
-    <a class="btn btn-outline-secondary btn-lg" routerLink="/orders">
-      <i class="bi bi-receipt-cutoff me-2"></i> Ver historial de ventas
-    </a>
-  </div>
+    <div class="mb-3 text-start">
+      <label>Contraseña</label>
+      <input type="password" id="password" formControlName="password" class="form-control" name="password" required />
+    </div>
+
+    <button type="submit" class="btn btn-primary w-100">Ingresar</button>
+  </form>
 </section>
+<!-- Modal de selección de tenant -->
+<div class="modal fade show d-block" *ngIf="showTenantModal" tabindex="-1" role="dialog"
+  style="background-color: rgba(0,0,0,0.5);">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title">Selecciona la empresa</h5>
+        <button type="button" class="close" (click)="closeModal()">&times;</button>
+      </div>
+      <div class="modal-body">
+        <div class="mb-3">
+          <label for="tenantSelect" class="form-label">Seleccionar empresa:</label>
+          <select id="tenantSelect" class="form-select w-auto d-inline-block" (change)="onTenantChange($event)">
+            <option value="" disabled [selected]="!selectedTenant">Seleccionar empresa...</option>
+            <option *ngFor="let t of tenants" [value]="t.tid" [selected]="t.tid === selectedTenant">{{ t.name }}
+            </option>
+          </select>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div *ngIf="loading" class="text-center mt-3">
+  <div class="spinner-border text-primary" role="status">
+    <span class="visually-hidden">Cargando...</span>
+  </div>
+  <p class="mt-2">Cargando información...</p>
+</div>

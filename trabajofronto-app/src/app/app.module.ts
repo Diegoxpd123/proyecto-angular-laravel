@@ -31,7 +31,7 @@ import { ZXingScannerModule } from '@zxing/ngx-scanner';
     AppRoutingModule,
     HttpClientModule,
     ReactiveFormsModule,
-     ZXingScannerModule
+     ZXingScannerModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
