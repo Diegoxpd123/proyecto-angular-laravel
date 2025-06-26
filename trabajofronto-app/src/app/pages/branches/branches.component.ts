@@ -31,14 +31,13 @@ export class BranchesComponent implements OnInit {
   }
 
   createBranch() {
-    // lógica para crear (modal, navegar o inline)
-    console.log('Crear nueva sucursal');
+    this.router.navigate(['/branches/create']);
   }
 
   editBranch(branch: any) {
-    // lógica para editar (modal, navegar o inline)
-    console.log('Editar sucursal', branch);
+    this.router.navigate(['/branches/edit', branch.id]);
   }
+
 
   deleteBranch(id: number) {
     if (confirm('¿Estás seguro de eliminar esta sucursal?')) {

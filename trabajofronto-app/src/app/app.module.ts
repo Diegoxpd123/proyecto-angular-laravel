@@ -24,6 +24,7 @@ import { MatListModule } from '@angular/material/list';
 import { BranchesComponent } from './pages/branches/branches.component';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatTableModule } from '@angular/material/table';
+import { BranchCreateComponent } from './pages/branch-create/branch-create.component';
 
 @NgModule({
   declarations: [
@@ -38,7 +39,8 @@ import { MatTableModule } from '@angular/material/table';
     OrderFormComponent,
     LoginComponent,
     DashboardComponent,
-    BranchesComponent
+    BranchesComponent,
+    BranchCreateComponent
   ],
   imports: [
     BrowserModule,

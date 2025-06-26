@@ -1,0 +1,27 @@
+<mat-card class="branches-card">
+  <div class="card-header">
+    <h2>
+      <mat-icon>store</mat-icon>
+      {{ isEditMode ? 'Editar Sucursal' : 'Nueva Sucursal' }}
+    </h2>
+    <div class="header-actions">
+      <button mat-button color="warn" (click)="cancel()">Volver</button>
+    </div>
+  </div>
+
+  <form [formGroup]="branchForm" (ngSubmit)="onSubmit()">
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>Nombre</mat-label>
+      <input matInput formControlName="name" />
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>Descripción</mat-label>
+      <textarea matInput formControlName="descripcion"></textarea>
+    </mat-form-field>
+
+    <button mat-raised-button color="primary" type="submit">
+      {{ isEditMode ? 'Actualizar' : 'Crear' }}
+    </button>
+  </form>
+</mat-card>
