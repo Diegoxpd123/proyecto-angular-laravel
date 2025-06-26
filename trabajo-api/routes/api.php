@@ -15,8 +15,24 @@ use App\Http\Controllers\ProductDetailController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\StyleController;
+use App\Http\Controllers\AuthController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
+
+Route::prefix('auth')->group(function () {
+    Route::post('/register', [AuthController::class, 'register']);
+    Route::post('/login', [AuthController::class, 'login']);
+
+    Route::middleware('auth:api')->group(function () {
+        Route::get('/me', [AuthController::class, 'me']);
+        Route::post('/logout', [AuthController::class, 'logout']);
+        Route::post('/refresh', [AuthController::class, 'refresh']);
+    });
+});
+
+Route::middleware(['tenant'])->group(function () {
+    Route::apiResource('branches', BranchController::class);
+});
 
 Route::apiResource('styles', StyleController::class);
 Route::apiResource('users', UserController::class);
@@ -25,7 +41,6 @@ Route::apiResource('product-details', ProductDetailController::class);
 Route::apiResource('products', ProductController::class);
 Route::apiResource('genres', GenreController::class);
 Route::apiResource('categories', CategoryController::class);
-Route::apiResource('branches', BranchController::class);
 Route::apiResource('clientes', ClienteController::class);
 Route::apiResource('books', BookController::class);
 Route::apiResource('orders', OrderController::class);

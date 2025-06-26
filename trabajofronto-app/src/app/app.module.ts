@@ -13,6 +13,17 @@ import { BookFormComponent } from './components/book-form/book-form.component';
 import { OrderListComponent } from './components/order-list/order-list.component';
 import { OrderFormComponent } from './components/order-form/order-form.component';
 import { ZXingScannerModule } from '@zxing/ngx-scanner';
+import { LoginComponent } from './auth/login/login.component';
+import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatInputModule } from '@angular/material/input';
+import { MatButtonModule } from '@angular/material/button';
+import { DashboardComponent } from './pages/dashboard/dashboard.component';
+import { MatCardModule } from '@angular/material/card';
+import { MatIconModule } from '@angular/material/icon';
+import { MatListModule } from '@angular/material/list';
+import { BranchesComponent } from './pages/branches/branches.component';
+
+
 
 @NgModule({
   declarations: [
@@ -25,6 +36,9 @@ import { ZXingScannerModule } from '@zxing/ngx-scanner';
     BookFormComponent,
     OrderListComponent,
     OrderFormComponent,
+    LoginComponent,
+    DashboardComponent,
+    BranchesComponent
   ],
   imports: [
     BrowserModule,
@@ -32,6 +46,12 @@ import { ZXingScannerModule } from '@zxing/ngx-scanner';
     HttpClientModule,
     ReactiveFormsModule,
      ZXingScannerModule,
+     MatFormFieldModule,
+    MatInputModule,
+    MatCardModule,
+    MatIconModule,
+    MatButtonModule,
+    MatListModule
   ],
   providers: [],
   bootstrap: [AppComponent]

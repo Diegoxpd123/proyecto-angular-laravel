@@ -13,7 +13,7 @@ class IdentifyTenant
 {
     public function handle(Request $request, Closure $next)
     {
-        $tid = $request->header('tenant-id');
+        $tid = $request->header('X-Tenant-ID');
 
         if (!$tid) {
             return response()->json(['message' => 'No hay tenant en la sesión'], 400);
