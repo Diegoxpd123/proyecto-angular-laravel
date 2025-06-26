@@ -25,7 +25,7 @@ class IdentifyTenant
             return response()->json(['message' => 'Tenant no válido'], 404);
         }
 
-        $dbName = $tenant->database;
+        $dbName = $tenant->slug;
 
 
         Log::info('🌐 Middleware tenant.db ejecutado ' . $dbName);

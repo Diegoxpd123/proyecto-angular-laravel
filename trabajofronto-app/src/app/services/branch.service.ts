@@ -8,14 +8,16 @@ import { Observable } from 'rxjs';
 export class BranchService {
   private api = 'http://localhost:8000/api';
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) { }
 
   getAll(): Observable<any[]> {
     const tenantId = localStorage.getItem('tenant_id');
+    const token = localStorage.getItem('token');
     const headers = new HttpHeaders({
-      'X-Tenant-ID': tenantId || ''
+      'X-Tenant-ID': tenantId || '',
+      'Authorization': `Bearer ${token}`
     });
 
-    return this.http.get<any[]>(this.api+'/branches', { headers });
+    return this.http.get<any[]>(this.api + '/branches', { headers });
   }
 }

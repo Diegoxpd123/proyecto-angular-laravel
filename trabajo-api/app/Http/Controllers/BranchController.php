@@ -51,21 +51,21 @@ class BranchController extends Controller
         return response()->json(['message' => 'Sucursal eliminada']);
     }
 
-      public function conexion()
+    public function conexion()
     {
-        $tid = request()->header('tenant-id');
+        $tid = request()->header('X-Tenant-ID');
 
         if (!$tid) {
             return response()->json(['message' => 'No hay tenant en la sesión ' . $tid], 400);
         }
 
-        $tenant = \App\Models\Tenant::where('tid', $tid)->first();
+        $tenant = \App\Models\Tenant::where('id', $tid)->first();
 
         if (!$tenant) {
             return response()->json(['message' => 'Tenant no válido'], 404);
         }
 
-        $dbName = $tenant->database;
+        $dbName = $tenant->slug;
 
         // Crear si no existe
         DB::statement("CREATE DATABASE IF NOT EXISTS `$dbName`");

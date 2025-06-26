@@ -33,7 +33,7 @@ class TenantCreate extends Command
     {
         // Argumentos
         $database = $this->argument('database');
-        $slug = $this->argument('slug');
+        $slug = $this->argument('database');
         $tipo_documento = $this->argument('tipo_documento');
         $nro_documento = $this->argument('nro_documento');
         $plan_ventaid = $this->argument('plan_ventaid');

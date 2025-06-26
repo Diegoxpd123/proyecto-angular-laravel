@@ -30,10 +30,9 @@ Route::prefix('auth')->group(function () {
     });
 });
 
-Route::middleware(['tenant'])->group(function () {
+Route::middleware(['auth:api'])->group(function () {
     Route::apiResource('branches', BranchController::class);
 });
-
 Route::apiResource('styles', StyleController::class);
 Route::apiResource('users', UserController::class);
 Route::apiResource('planventas', PlanVentaController::class);
