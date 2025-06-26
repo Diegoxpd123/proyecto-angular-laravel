@@ -2,9 +2,14 @@
 
 namespace App\Console\Commands;
 
+use App\Models\Genre;
+use App\Models\Branch;
+use App\Models\Tenant;
 use Illuminate\Console\Command;
 use Illuminate\Support\Facades\DB;
-use App\Models\Tenant;
+use Illuminate\Support\Facades\Artisan;
+use App\Models\Style;
+use App\Models\Category;
 
 class TenantCreate extends Command
 {
@@ -85,12 +90,117 @@ class TenantCreate extends Command
         DB::setDefaultConnection('tenant');
         DB::reconnect('tenant');
 
-        // Ejecutar migraciones (descomenta si ya tienes migraciones para el tenant)
-        // Artisan::call('migrate', [
-        //     '--path' => 'database/migrations/tenant',
-        //     '--database' => 'tenant',
-        //     '--force' => true,
-        // ]);
+
+        Artisan::call('migrate', [
+            '--path' => 'database/migrations/tenant',
+            '--database' => 'tenant',
+            '--force' => true,
+        ]);
+
+        // Géneros (fijos)
+        $genres = ['Moda Infantil', 'Hombre', 'Mujer'];
+        foreach ($genres as $genre) {
+            Genre::create([
+                'name' => $genre,
+                'descripcion' => fake()->sentence(),
+            ]);
+        }
+
+        // Sucursales (marcas conocidas o simuladas)
+        $branches = [
+            'Zara',
+            'H&M',
+            'Uniqlo',
+            'Nike',
+            'Adidas',
+            'Levi\'s',
+            'Pull&Bear',
+            'Bershka',
+            'Puma',
+            'Reebok',
+            'Guess',
+            'Stradivarius',
+            'Mango',
+            'Old Navy',
+            'GAP',
+            'Columbia',
+            'Under Armour',
+            'Lacoste',
+            'Tommy Hilfiger',
+            'Forever 21'
+        ];
+        foreach ($branches as $branch) {
+            Branch::create([
+                'name' => $branch,
+                'descripcion' => fake()->catchPhrase(),
+            ]);
+        }
+
+        // Estilos (relacionados con Genre)
+        $genreMap = Genre::pluck('id', 'name'); // ['Moda Infantil' => 1, ...]
+
+        $stylesMap = [
+            'Moda Infantil' => ['Ropa Niña', 'Ropa Niño', 'Ropa Bebé', 'Calzado Infantil'],
+            'Hombre' => ['Ropa Casual Hombre', 'Ropa Formal Hombre', 'Ropa Interior Hombre', 'Calzado Hombre'],
+            'Mujer' => ['Ropa Casual Mujer', 'Ropa Interior Mujer', 'Ropa Formal Mujer', 'Calzado Mujer'],
+        ];
+
+        foreach ($stylesMap as $genreName => $styles) {
+            foreach ($styles as $style) {
+                Style::create([
+                    'name' => $style,
+                    'descripcion' => fake()->sentence(),
+                    'genreid' => $genreMap[$genreName],
+                ]);
+            }
+        }
+
+        // Categorías (por estilo)
+        $styleMap = Style::pluck('id', 'name');
+
+        $categoriesMap = [
+            'Ropa Casual Hombre' => [
+                'Polos',
+                'Casacas y Chalecos',
+                'Poleras y Polerones',
+                'Jeans',
+                'Chompas',
+                'Camisas',
+                'Pantalones',
+                'Joggers',
+                'Shorts',
+                'Ropa de Baño'
+            ],
+            'Ropa Formal Hombre' => [
+                'Camisas de Vestir',
+                'Pantalones de Vestir',
+                'Blazers y Sacos',
+                'Ternos',
+                'Accesorios'
+            ],
+            'Ropa Interior Hombre' => ['Bóxers', 'Pijamas', 'Medias'],
+            'Calzado Hombre' => ['Zapatillas', 'Zapatos de vestir', 'Botines'],
+
+            'Ropa Casual Mujer' => ['Blusas', 'Faldas', 'Pantalones', 'Vestidos', 'Jeans'],
+            'Ropa Interior Mujer' => ['Sostenes', 'Pijamas', 'Panties'],
+            'Ropa Formal Mujer' => ['Vestidos de noche', 'Blazers', 'Faldas formales'],
+            'Calzado Mujer' => ['Tacones', 'Sandalias', 'Botas'],
+
+            'Ropa Niña' => ['Vestidos', 'Faldas', 'Leggings'],
+            'Ropa Niño' => ['Pantalones', 'Polos', 'Chompas'],
+            'Ropa Bebé' => ['Enterizos', 'Bodies', 'Gorros'],
+            'Calzado Infantil' => ['Zapatillas', 'Botitas', 'Sandalias'],
+        ];
+
+        foreach ($categoriesMap as $styleName => $categories) {
+            foreach ($categories as $category) {
+                Category::create([
+                    'name' => $category,
+                    'descripcion' => fake()->sentence(),
+                    'styleid' => $styleMap[$styleName] ?? null,
+                ]);
+            }
+        }
 
         $this->info("Tenant '{$razonsocial}' creado con éxito y base de datos lista.");
 

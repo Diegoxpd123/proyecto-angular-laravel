@@ -6,10 +6,13 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Tenancy\Identification\Contracts\Tenant as TenantContract;
 use Tenancy\Identification\Concerns\AllowsTenantIdentification;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Tenant extends Model implements TenantContract
 {
     use AllowsTenantIdentification, SoftDeletes;
+
+    use HasFactory;
 
     protected $fillable = [
         'tipo_documento',
