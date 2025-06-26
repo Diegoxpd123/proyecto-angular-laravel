@@ -22,8 +22,8 @@ import { MatCardModule } from '@angular/material/card';
 import { MatIconModule } from '@angular/material/icon';
 import { MatListModule } from '@angular/material/list';
 import { BranchesComponent } from './pages/branches/branches.component';
-
-
+import { MatProgressBarModule } from '@angular/material/progress-bar';
+import { MatTableModule } from '@angular/material/table';
 
 @NgModule({
   declarations: [
@@ -45,13 +45,15 @@ import { BranchesComponent } from './pages/branches/branches.component';
     AppRoutingModule,
     HttpClientModule,
     ReactiveFormsModule,
-     ZXingScannerModule,
-     MatFormFieldModule,
+    ZXingScannerModule,
+    MatFormFieldModule,
     MatInputModule,
     MatCardModule,
     MatIconModule,
     MatButtonModule,
-    MatListModule
+    MatListModule,
+    MatTableModule,
+    MatProgressBarModule
   ],
   providers: [],
   bootstrap: [AppComponent]

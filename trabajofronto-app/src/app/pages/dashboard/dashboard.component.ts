@@ -16,9 +16,15 @@ export class DashboardComponent {
     { title: 'Categorías', route: '/categories', icon: 'view_list' },
   ];
 
-  constructor(private router: Router) {}
+  constructor(private router: Router) { }
 
   navigateTo(route: string) {
     this.router.navigate([route]);
+  }
+
+  logout() {
+    localStorage.removeItem('token');
+    localStorage.removeItem('tenant_id');
+    this.router.navigate(['/login']);
   }
 }

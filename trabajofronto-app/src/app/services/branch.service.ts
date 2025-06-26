@@ -6,18 +6,48 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class BranchService {
-  private api = 'http://localhost:8000/api';
+  private api = 'http://localhost:8000/api/branches';
 
   constructor(private http: HttpClient) { }
 
-  getAll(): Observable<any[]> {
-    const tenantId = localStorage.getItem('tenant_id');
+  private getHeaders(): HttpHeaders {
     const token = localStorage.getItem('token');
-    const headers = new HttpHeaders({
-      'X-Tenant-ID': tenantId || '',
-      'Authorization': `Bearer ${token}`
-    });
+    const tenantId = localStorage.getItem('tenant_id');
 
-    return this.http.get<any[]>(this.api + '/branches', { headers });
+    return new HttpHeaders({
+      'Authorization': `Bearer ${token}`,
+      'X-Tenant-ID': tenantId || '',
+      'Content-Type': 'application/json'
+    });
+  }
+
+  getAll(): Observable<any[]> {
+    return this.http.get<any[]>(this.api, {
+      headers: this.getHeaders()
+    });
+  }
+
+  getById(id: number): Observable<any> {
+    return this.http.get<any>(`${this.api}/${id}`, {
+      headers: this.getHeaders()
+    });
+  }
+
+  create(data: any): Observable<any> {
+    return this.http.post<any>(this.api, data, {
+      headers: this.getHeaders()
+    });
+  }
+
+  update(id: number, data: any): Observable<any> {
+    return this.http.put<any>(`${this.api}/${id}`, data, {
+      headers: this.getHeaders()
+    });
+  }
+
+  delete(id: number): Observable<any> {
+    return this.http.delete<any>(`${this.api}/${id}`, {
+      headers: this.getHeaders()
+    });
   }
 }

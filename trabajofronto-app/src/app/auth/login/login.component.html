@@ -1,17 +1,23 @@
-<div class="login-container">
-  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
-    <h2>Iniciar Sesión</h2>
+<div class="contenedo-login">
+  <div class="login-container">
+    <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+      <h2><mat-icon>lock</mat-icon> Iniciar Sesión</h2>
 
-    <mat-form-field appearance="fill" class="full-width">
-      <mat-label>Email</mat-label>
-      <input matInput formControlName="email" type="email" required />
-    </mat-form-field>
+      <mat-progress-bar *ngIf="loading" mode="indeterminate"></mat-progress-bar>
 
-    <mat-form-field appearance="fill" class="full-width">
-      <mat-label>Contraseña</mat-label>
-      <input matInput formControlName="password" type="password" required />
-    </mat-form-field>
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Email</mat-label>
+        <input matInput formControlName="email" type="email" required />
+      </mat-form-field>
 
-    <button mat-raised-button color="primary" type="submit" [disabled]="loginForm.invalid">Ingresar</button>
-  </form>
+      <mat-form-field appearance="fill" class="full-width">
+        <mat-label>Contraseña</mat-label>
+        <input matInput formControlName="password" type="password" required />
+      </mat-form-field>
+
+      <button mat-raised-button color="primary" type="submit" [disabled]="loginForm.invalid || loading">
+        {{ loading ? 'Ingresando...' : 'Ingresar' }}
+      </button>
+    </form>
+  </div>
 </div>
