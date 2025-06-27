@@ -19,25 +19,30 @@ import { CategorysComponent } from './pages/categorys/categorys.component';
 import { CategoryCreateComponent } from './pages/category-create/category-create.component';
 
 
+
 const routes: Routes = [
+  {
+    path: '',
+    component: DashboardComponent,
+    children: [
+      // { path: 'products', component: ProductsComponent },
+      { path: 'branches', component: BranchesComponent },
+      { path: 'branches/create', component: BranchCreateComponent },
+      { path: 'branches/edit/:id', component: BranchCreateComponent },
+      { path: 'genres', component: GenresComponent },
+      { path: 'genres/create', component: GenresCreateComponent },
+      { path: 'genres/edit/:id', component: GenresCreateComponent },
+      { path: 'styles', component: StylesComponent },
+      { path: 'styles/create', component: StyleCreateComponent },
+      { path: 'styles/edit/:id', component: StyleCreateComponent },
+      { path: 'categories', component: CategorysComponent },
+      { path: 'categories/create', component: CategoryCreateComponent },
+      { path: 'categories/edit/:id', component: CategoryCreateComponent },
+      // ... otras rutas internas
+    ]
+  },
   { path: 'login', component: LoginComponent },
-  { path: 'dashboard', component: DashboardComponent },
-  //  { path: 'products', loadChildren: () => import('./pages/products/products.module').then(m => m.ProductsModule) },
-  { path: 'branches', component: BranchesComponent },
-  { path: 'branches/create', component: BranchCreateComponent },
-  { path: 'branches/edit/:id', component: BranchCreateComponent },
-  { path: 'genres', component: GenresComponent },
-  { path: 'genres/create', component: GenresCreateComponent },
-  { path: 'genres/edit/:id', component: GenresCreateComponent },
-  { path: 'styles', component: StylesComponent },
-  { path: 'styles/create', component: StyleCreateComponent },
-  { path: 'styles/edit/:id', component: StyleCreateComponent },
-  { path: 'categories', component: CategorysComponent },
-  { path: 'categories/create', component: CategoryCreateComponent },
-  { path: 'categories/edit/:id', component: CategoryCreateComponent },
-
-
-  { path: '', redirectTo: 'login', pathMatch: 'full' }
+  { path: '**', redirectTo: '' }
 ];
 
 @NgModule({

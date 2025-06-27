@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, HostListener } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
@@ -8,15 +8,25 @@ import { Router } from '@angular/router';
   styleUrls: ['./dashboard.component.scss'],
 })
 export class DashboardComponent {
+  isDesktop: boolean = window.innerWidth > 768;
+
   cards = [
-    { title: 'Productos', route: '/products', icon: 'inventory' },
-    { title: 'Marcas', route: '/branches', icon: 'store' },
-    { title: 'Géneros', route: '/genres', icon: 'category' },
+    { title: 'Productos', route: '/products', icon: 'checkroom' },
+    { title: 'Marcas', route: '/branches', icon: 'storefront' },
+    { title: 'Géneros', route: '/genres', icon: 'wc' },
     { title: 'Estilos', route: '/styles', icon: 'style' },
-    { title: 'Categorías', route: '/categories', icon: 'view_list' },
+    { title: 'Categorías', route: '/categories', icon: 'category' },
+    { title: 'Reclamaciones', route: '/reclamaciones', icon: 'report_problem' },
+    { title: 'Calificaciones', route: '/calificaciones', icon: 'star_rate' },
+    { title: 'Órdenes', route: '/ordenes', icon: 'shopping_bag' },
   ];
 
-  constructor(private router: Router) { }
+  constructor(private router: Router) {}
+
+  @HostListener('window:resize')
+  onResize() {
+    this.isDesktop = window.innerWidth > 768;
+  }
 
   navigateTo(route: string) {
     this.router.navigate([route]);

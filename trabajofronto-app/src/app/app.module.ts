@@ -36,6 +36,7 @@ import { CategorysComponent } from './pages/categorys/categorys.component';
 import { CategoryCreateComponent } from './pages/category-create/category-create.component';
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
+import { MatSidenavModule } from '@angular/material/sidenav';
 
 @NgModule({
   declarations: [
@@ -76,6 +77,7 @@ import { MatSortModule } from '@angular/material/sort';
     MatPaginatorModule,
     MatSelectModule,
     MatSortModule,
+    MatSidenavModule,
     FormsModule,
     NgxMatSelectSearchModule
   ],

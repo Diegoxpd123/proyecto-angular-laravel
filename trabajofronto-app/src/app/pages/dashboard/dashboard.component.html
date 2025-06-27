@@ -1,15 +1,34 @@
-<div class="dashboard-container">
-  <div class="dashboard-header">
-    <h2><mat-icon>dashboard</mat-icon> Panel de Administración</h2>
-    <button mat-icon-button color="warn" matTooltip="Cerrar sesión" (click)="logout()">
-      <mat-icon>logout</mat-icon>
-    </button>
-  </div>
+<div class="main-layout">
+  <mat-sidenav-container class="sidenav-container">
+    <mat-sidenav
+      #sidenav
+      class="sidenav"
+      [mode]="isDesktop ? 'side' : 'over'"
+      [opened]="isDesktop"
+      [class.open]="!isDesktop && sidenav.opened"
+    >
+      <h3 class="title">Mi Tienda</h3>
+      <mat-nav-list>
+        <a mat-list-item *ngFor="let card of cards" [routerLink]="card.route" routerLinkActive="active">
+          <mat-icon matListIcon>{{ card.icon }}</mat-icon>
+          <span>{{ card.title }}</span>
+        </a>
+      </mat-nav-list>
+    </mat-sidenav>
 
-  <div class="card-grid">
-    <mat-card *ngFor="let card of cards" class="dashboard-card" (click)="navigateTo(card.route)">
-      <mat-icon class="card-icon">{{ card.icon }}</mat-icon>
-      <span>{{ card.title }}</span>
-    </mat-card>
-  </div>
+    <mat-sidenav-content class="content">
+      <div class="top-bar">
+        <button mat-icon-button (click)="sidenav.toggle()" class="toggle-btn">
+          <mat-icon>menu</mat-icon>
+        </button>
+        <span class="app-title">Panel de Administración</span>
+        <span class="spacer"></span>
+        <button mat-icon-button matTooltip="Cerrar sesión" (click)="logout()">
+          <mat-icon>logout</mat-icon>
+        </button>
+      </div>
+
+      <router-outlet></router-outlet>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
 </div>
