@@ -2,10 +2,9 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
-@Injectable({
-  providedIn: 'root'
-})
-export class BranchService {
+@Injectable({ providedIn: 'root' })
+export class GenreService {
+
   private api = 'http://localhost:8000/api';
 
   constructor(private http: HttpClient) { }
@@ -20,33 +19,32 @@ export class BranchService {
       'Content-Type': 'application/json'
     });
   }
-
-  getAll(): Observable<any[]> {
-    return this.http.get<any[]>(this.api+'/branches', {
+  getAll() {
+    return this.http.get<any[]>(this.api+'/genres', {
       headers: this.getHeaders()
     });
   }
 
-  getById(id: number): Observable<any> {
-    return this.http.get<any>(`${this.api}/branches/${id}`, {
+  getById(id: number) {
+    return this.http.get<any>(`${this.api}/genres/${id}`, {
       headers: this.getHeaders()
     });
   }
 
-  create(data: any): Observable<any> {
-    return this.http.post<any>(this.api+'/branches', data, {
+  create(data: any) {
+    return this.http.post<any>(this.api+'/genres', data, {
       headers: this.getHeaders()
     });
   }
 
-  update(id: number, data: any): Observable<any> {
-    return this.http.put<any>(`${this.api}/branches/${id}`, data, {
+  update(id: number, data: any) {
+    return this.http.put<any>(`${this.api}/genres/${id}`, data, {
       headers: this.getHeaders()
     });
   }
 
-  delete(id: number): Observable<any> {
-    return this.http.delete<any>(`${this.api}/branches/${id}`, {
+  delete(id: number) {
+    return this.http.delete<any>(`${this.api}/genres/${id}`, {
       headers: this.getHeaders()
     });
   }

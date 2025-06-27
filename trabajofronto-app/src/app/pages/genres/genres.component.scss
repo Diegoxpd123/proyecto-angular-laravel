@@ -1,3 +1,5 @@
+@use '@angular/material' as mat;
+
 .branches-card {
   background-color: #ffffff;
   color: #212121;
@@ -55,9 +57,12 @@
     }
   }
 
-  .search-field {
-    width: 100%;
+  .table-search {
     margin-bottom: 1rem;
+
+    mat-form-field {
+      width: 100%;
+    }
   }
 
   .table-wrapper {
@@ -117,10 +122,6 @@
       button {
         width: 100%;
       }
-    }
-
-    .search-field {
-      margin-bottom: 1rem;
     }
 
     table {

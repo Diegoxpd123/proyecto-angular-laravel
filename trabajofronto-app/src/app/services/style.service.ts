@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-export class BranchService {
+export class StyleService {
   private api = 'http://localhost:8000/api';
 
   constructor(private http: HttpClient) { }
@@ -22,31 +22,31 @@ export class BranchService {
   }
 
   getAll(): Observable<any[]> {
-    return this.http.get<any[]>(this.api+'/branches', {
+    return this.http.get<any[]>(`${this.api}/styles`, {
       headers: this.getHeaders()
     });
   }
 
   getById(id: number): Observable<any> {
-    return this.http.get<any>(`${this.api}/branches/${id}`, {
+    return this.http.get<any>(`${this.api}/styles/${id}`, {
       headers: this.getHeaders()
     });
   }
 
   create(data: any): Observable<any> {
-    return this.http.post<any>(this.api+'/branches', data, {
+    return this.http.post<any>(`${this.api}/styles`, data, {
       headers: this.getHeaders()
     });
   }
 
   update(id: number, data: any): Observable<any> {
-    return this.http.put<any>(`${this.api}/branches/${id}`, data, {
+    return this.http.put<any>(`${this.api}/styles/${id}`, data, {
       headers: this.getHeaders()
     });
   }
 
   delete(id: number): Observable<any> {
-    return this.http.delete<any>(`${this.api}/branches/${id}`, {
+    return this.http.delete<any>(`${this.api}/styles/${id}`, {
       headers: this.getHeaders()
     });
   }

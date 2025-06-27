@@ -55,9 +55,19 @@
     }
   }
 
-  .search-field {
+  .table-search {
     width: 100%;
     margin-bottom: 1rem;
+
+    mat-form-field {
+      width: 100%;
+
+      input {
+        padding: 10px;
+        background-color: #fafafa;
+        border-radius: 6px;
+      }
+    }
   }
 
   .table-wrapper {
@@ -103,6 +113,22 @@
     }
   }
 
+  mat-paginator {
+    margin-top: 1rem;
+
+    .mat-paginator-container {
+      justify-content: flex-end;
+    }
+
+    .mat-paginator-page-size {
+      margin-left: auto;
+    }
+
+    .mat-form-field {
+      font-size: 0.875rem;
+    }
+  }
+
   @media (max-width: 768px) {
     .card-header {
       flex-direction: column;
@@ -119,16 +145,19 @@
       }
     }
 
-    .search-field {
-      margin-bottom: 1rem;
-    }
-
     table {
       min-width: unset;
       font-size: 0.9rem;
 
       th, td {
         padding: 0.6rem;
+      }
+    }
+
+    mat-paginator {
+      .mat-paginator-container {
+        flex-direction: column;
+        align-items: flex-start;
       }
     }
   }

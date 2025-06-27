@@ -1,0 +1,31 @@
+<mat-card class="branch-create-card">
+  <div class="card-header">
+    <h2>
+      <mat-icon>category</mat-icon>
+      {{ form.value.id ? 'Editar Género' : 'Nuevo Género' }}
+    </h2>
+    <div class="header-actions">
+      <button mat-button color="warn" (click)="cancel()">
+        <mat-icon>arrow_back</mat-icon> Volver
+      </button>
+    </div>
+  </div>
+
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>Nombre</mat-label>
+      <input matInput formControlName="name" required />
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>Descripción</mat-label>
+      <textarea matInput formControlName="descripcion" rows="3"></textarea>
+    </mat-form-field>
+
+    <div class="form-actions">
+      <button mat-raised-button color="primary" type="submit" [disabled]="form.invalid">
+        {{ form.value.id ? 'Actualizar' : 'Guardar' }}
+      </button>
+    </div>
+  </form>
+</mat-card>

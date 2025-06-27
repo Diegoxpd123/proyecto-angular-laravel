@@ -32,21 +32,21 @@ Route::prefix('auth')->group(function () {
 
 Route::middleware(['auth:api'])->group(function () {
     Route::apiResource('branches', BranchController::class);
+    Route::apiResource('genres', GenreController::class);
+    Route::apiResource('styles', StyleController::class);
+    Route::apiResource('users', UserController::class);
+    Route::apiResource('planventas', PlanVentaController::class);
+    Route::apiResource('product-details', ProductDetailController::class);
+    Route::apiResource('products', ProductController::class);
+    Route::apiResource('categories', CategoryController::class);
+    Route::apiResource('clientes', ClienteController::class);
+    Route::apiResource('books', BookController::class);
+    Route::apiResource('orders', OrderController::class);
+    Route::apiResource('details', DetailController::class);
+    Route::apiResource('usuarios', UsuarioController::class);
+    Route::apiResource('tenants', TenantController::class);
+    Route::apiResource('tenantsuser', UsuarioTenantController::class);
+    Route::get('/tenants', [TenantController::class, 'getTenants']);
+    Route::post('/tenants/set', [TenantController::class, 'setTenant']);
+    Route::get('/tenants/current', [TenantController::class, 'getCurrentTenant']);
 });
-Route::apiResource('styles', StyleController::class);
-Route::apiResource('users', UserController::class);
-Route::apiResource('planventas', PlanVentaController::class);
-Route::apiResource('product-details', ProductDetailController::class);
-Route::apiResource('products', ProductController::class);
-Route::apiResource('genres', GenreController::class);
-Route::apiResource('categories', CategoryController::class);
-Route::apiResource('clientes', ClienteController::class);
-Route::apiResource('books', BookController::class);
-Route::apiResource('orders', OrderController::class);
-Route::apiResource('details', DetailController::class);
-Route::apiResource('usuarios', UsuarioController::class);
-Route::apiResource('tenants', TenantController::class);
-Route::apiResource('tenantsuser', UsuarioTenantController::class);
-Route::get('/tenants', [TenantController::class, 'getTenants']);
-Route::post('/tenants/set', [TenantController::class, 'setTenant']);
-Route::get('/tenants/current', [TenantController::class, 'getCurrentTenant']);

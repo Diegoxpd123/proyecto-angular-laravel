@@ -1,0 +1,46 @@
+<mat-card class="branches-card">
+  <div class="card-header">
+    <h2>
+      <mat-icon>style</mat-icon>
+      {{ isEditMode ? 'Editar estilo' : 'Nuevo estilo' }}
+    </h2>
+    <div class="header-actions">
+      <button mat-stroked-button color="warn" (click)="cancel()">
+        <mat-icon>arrow_back</mat-icon> Volver
+      </button>
+    </div>
+  </div>
+
+  <form [formGroup]="form" (ngSubmit)="onSubmit()">
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>Nombre</mat-label>
+      <input matInput formControlName="name" required />
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>Descripción</mat-label>
+      <textarea matInput formControlName="descripcion" rows="3"></textarea>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="full-width">
+      <mat-label>Género</mat-label>
+      <mat-select formControlName="genreid">
+        <!-- Campo de búsqueda dentro del panel -->
+        <ngx-mat-select-search [formControl]="genreFilterControl"
+          placeholderLabel="Buscar género..."></ngx-mat-select-search>
+
+        <!-- Opciones filtradas -->
+        <mat-option *ngFor="let genre of filteredGenres" [value]="genre.id">
+          {{ genre.name }}
+        </mat-option>
+      </mat-select>
+    </mat-form-field>
+
+
+    <div class="form-actions">
+      <button mat-raised-button color="primary" type="submit" [disabled]="form.invalid">
+        {{ isEditMode ? 'Actualizar' : 'Guardar' }}
+      </button>
+    </div>
+  </form>
+</mat-card>

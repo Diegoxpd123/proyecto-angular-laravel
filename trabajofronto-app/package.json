@@ -24,6 +24,7 @@
     "bootstrap": "^5.3.6",
     "bootstrap-icons": "^1.13.1",
     "jquery": "^3.7.1",
+    "ngx-mat-select-search": "^8.0.2",
     "ngx-scanner-qrcode": "^1.7.6",
     "popper.js": "^1.16.1",
     "remixicon": "^4.6.0",

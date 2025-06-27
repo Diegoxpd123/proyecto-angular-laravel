@@ -25,6 +25,17 @@ import { BranchesComponent } from './pages/branches/branches.component';
 import { MatProgressBarModule } from '@angular/material/progress-bar';
 import { MatTableModule } from '@angular/material/table';
 import { BranchCreateComponent } from './pages/branch-create/branch-create.component';
+import { GenresComponent } from './pages/genres/genres.component';
+import { GenresCreateComponent } from './pages/genres-create/genres-create.component';
+import { StylesComponent } from './pages/styles/styles.component';
+import { StyleCreateComponent } from './pages/style-create/style-create.component';
+import { MatSelectModule } from '@angular/material/select';
+import { FormsModule } from '@angular/forms';
+import { NgxMatSelectSearchModule } from 'ngx-mat-select-search';
+import { CategorysComponent } from './pages/categorys/categorys.component';
+import { CategoryCreateComponent } from './pages/category-create/category-create.component';
+import { MatPaginatorModule } from '@angular/material/paginator';
+import { MatSortModule } from '@angular/material/sort';
 
 @NgModule({
   declarations: [
@@ -40,7 +51,13 @@ import { BranchCreateComponent } from './pages/branch-create/branch-create.compo
     LoginComponent,
     DashboardComponent,
     BranchesComponent,
-    BranchCreateComponent
+    BranchCreateComponent,
+    GenresComponent,
+    GenresCreateComponent,
+    StylesComponent,
+    StyleCreateComponent,
+    CategorysComponent,
+    CategoryCreateComponent
   ],
   imports: [
     BrowserModule,
@@ -55,7 +72,12 @@ import { BranchCreateComponent } from './pages/branch-create/branch-create.compo
     MatButtonModule,
     MatListModule,
     MatTableModule,
-    MatProgressBarModule
+    MatProgressBarModule,
+    MatPaginatorModule,
+    MatSelectModule,
+    MatSortModule,
+    FormsModule,
+    NgxMatSelectSearchModule
   ],
   providers: [],
   bootstrap: [AppComponent]

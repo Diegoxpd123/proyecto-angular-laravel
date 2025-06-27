@@ -16,7 +16,17 @@ class CategoryRequest extends FormRequest
         return [
             'name' => 'required|string|max:250',
             'descripcion' => 'nullable|string|max:500',
-            'styleid' => 'required|exists:styles,id',
+            'styleid' => 'required',
+        ];
+    }
+
+    public function messages(): array
+    {
+        return [
+            'name.required'        => 'El nombre es obligatorio.',
+            'name.max'             => 'El nombre no debe superar los 250 caracteres.',
+            'descripcion.max'      => 'La descripción no debe superar los 500 caracteres.',
+            'styleid.required'     => 'El género es obligatorio.',
         ];
     }
 }

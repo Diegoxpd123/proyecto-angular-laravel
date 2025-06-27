@@ -12,6 +12,7 @@ class Style extends Model
 
     protected $table = 'styles';
 
+
     protected $fillable = [
         'name',
         'descripcion',

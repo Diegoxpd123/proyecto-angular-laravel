@@ -1,4 +1,4 @@
-<mat-card class="branches-card">
+<mat-card class="branch-create-card">
   <div class="card-header">
     <h2>
       <mat-icon>store</mat-icon>
@@ -10,17 +10,17 @@
   </div>
 
   <form [formGroup]="branchForm" (ngSubmit)="onSubmit()">
-    <mat-form-field appearance="fill" class="full-width">
+    <mat-form-field appearance="fill">
       <mat-label>Nombre</mat-label>
       <input matInput formControlName="name" />
     </mat-form-field>
 
-    <mat-form-field appearance="fill" class="full-width">
+    <mat-form-field appearance="fill">
       <mat-label>Descripción</mat-label>
       <textarea matInput formControlName="descripcion"></textarea>
     </mat-form-field>
 
-    <button mat-raised-button color="primary" type="submit">
+    <button mat-raised-button type="submit">
       {{ isEditMode ? 'Actualizar' : 'Crear' }}
     </button>
   </form>

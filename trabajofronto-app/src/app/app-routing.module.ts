@@ -11,6 +11,13 @@ import { LoginComponent } from './auth/login/login.component';
 import { DashboardComponent } from './pages/dashboard/dashboard.component';
 import { BranchesComponent } from './pages/branches/branches.component';
 import { BranchCreateComponent } from './pages/branch-create/branch-create.component';
+import { GenresComponent } from './pages/genres/genres.component';
+import { GenresCreateComponent } from './pages/genres-create/genres-create.component';
+import { StylesComponent } from './pages/styles/styles.component';
+import { StyleCreateComponent } from './pages/style-create/style-create.component';
+import { CategorysComponent } from './pages/categorys/categorys.component';
+import { CategoryCreateComponent } from './pages/category-create/category-create.component';
+
 
 const routes: Routes = [
   { path: 'login', component: LoginComponent },
@@ -19,10 +26,16 @@ const routes: Routes = [
   { path: 'branches', component: BranchesComponent },
   { path: 'branches/create', component: BranchCreateComponent },
   { path: 'branches/edit/:id', component: BranchCreateComponent },
+  { path: 'genres', component: GenresComponent },
+  { path: 'genres/create', component: GenresCreateComponent },
+  { path: 'genres/edit/:id', component: GenresCreateComponent },
+  { path: 'styles', component: StylesComponent },
+  { path: 'styles/create', component: StyleCreateComponent },
+  { path: 'styles/edit/:id', component: StyleCreateComponent },
+  { path: 'categories', component: CategorysComponent },
+  { path: 'categories/create', component: CategoryCreateComponent },
+  { path: 'categories/edit/:id', component: CategoryCreateComponent },
 
-  // { path: 'genres', loadChildren: () => import('./pages/genres/genres.module').then(m => m.GenresModule) },
-  // { path: 'styles', loadChildren: () => import('./pages/styles/styles.module').then(m => m.StylesModule) },
-  // { path: 'categories', loadChildren: () => import('./pages/categories/categories.module').then(m => m.CategoriesModule) },
 
   { path: '', redirectTo: 'login', pathMatch: 'full' }
 ];
