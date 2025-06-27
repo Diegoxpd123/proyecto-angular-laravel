@@ -1,9 +1,11 @@
 .branch-create-card {
-  background-color: #ffffff; // fondo limpio
-  color: #212121; // texto principal
+  background-color: #ffffff;
+  color: #212121;
   padding: 1.5rem;
   border-radius: 12px;
   box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  max-width: 600px;
+  margin: 0 auto;
 
   .card-header {
     display: flex;
@@ -70,6 +72,7 @@
     }
   }
 
+  // Estilos específicos para móviles
   @media (max-width: 600px) {
     padding: 1.5rem 1rem;
 
@@ -88,8 +91,11 @@
       }
     }
 
-    form button[type="submit"] {
-      width: 100%;
+    form {
+      button[type="submit"] {
+        width: 100%;
+        align-self: stretch;
+      }
     }
   }
 }

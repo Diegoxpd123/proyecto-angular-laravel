@@ -14,7 +14,7 @@ class ProductDetailRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'productoid'     => 'required|exists:products,id',
+            'productoid'     => 'required',
             'talla'          => 'required|string|max:100',
             'stock'          => 'required|integer|min:0',
             'cantidadmayor'  => 'nullable|integer|min:0',

@@ -37,6 +37,8 @@ import { CategoryCreateComponent } from './pages/category-create/category-create
 import { MatPaginatorModule } from '@angular/material/paginator';
 import { MatSortModule } from '@angular/material/sort';
 import { MatSidenavModule } from '@angular/material/sidenav';
+import { ProductsComponent } from './pages/products/products.component';
+import { ProductCreateComponent } from './pages/product-create/product-create.component';
 
 @NgModule({
   declarations: [
@@ -58,7 +60,9 @@ import { MatSidenavModule } from '@angular/material/sidenav';
     StylesComponent,
     StyleCreateComponent,
     CategorysComponent,
-    CategoryCreateComponent
+    CategoryCreateComponent,
+    ProductsComponent,
+    ProductCreateComponent
   ],
   imports: [
     BrowserModule,

@@ -17,6 +17,9 @@ import { StylesComponent } from './pages/styles/styles.component';
 import { StyleCreateComponent } from './pages/style-create/style-create.component';
 import { CategorysComponent } from './pages/categorys/categorys.component';
 import { CategoryCreateComponent } from './pages/category-create/category-create.component';
+import { ProductsComponent } from './pages/products/products.component';
+import { ProductDetailService } from './services/product-detail.service';
+import { ProductCreateComponent } from './pages/product-create/product-create.component';
 
 
 
@@ -38,6 +41,9 @@ const routes: Routes = [
       { path: 'categories', component: CategorysComponent },
       { path: 'categories/create', component: CategoryCreateComponent },
       { path: 'categories/edit/:id', component: CategoryCreateComponent },
+      { path: 'products', component: ProductsComponent },
+      { path: 'products/create', component: ProductCreateComponent },
+      { path: 'products/edit/:id', component: ProductCreateComponent },
       // ... otras rutas internas
     ]
   },

@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class CategoryService {
-  private api = 'http://localhost:8000/api';
+  private api = 'https://moving-firefly-neatly.ngrok-free.app/api';
 
   constructor(private http: HttpClient) {}
 

@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 @Injectable({
   providedIn: 'root'
 })
-export class StyleService {
+export class ProductService {
   private api = 'https://moving-firefly-neatly.ngrok-free.app/api';
 
   constructor(private http: HttpClient) { }
@@ -22,31 +22,31 @@ export class StyleService {
   }
 
   getAll(): Observable<any[]> {
-    return this.http.get<any[]>(`${this.api}/styles`, {
+    return this.http.get<any[]>(`${this.api}/products`, {
       headers: this.getHeaders()
     });
   }
 
   getById(id: number): Observable<any> {
-    return this.http.get<any>(`${this.api}/styles/${id}`, {
+    return this.http.get<any>(`${this.api}/products/${id}`, {
       headers: this.getHeaders()
     });
   }
 
   create(data: any): Observable<any> {
-    return this.http.post<any>(`${this.api}/styles`, data, {
+    return this.http.post<any>(`${this.api}/products`, data, {
       headers: this.getHeaders()
     });
   }
 
   update(id: number, data: any): Observable<any> {
-    return this.http.put<any>(`${this.api}/styles/${id}`, data, {
+    return this.http.put<any>(`${this.api}/products/${id}`, data, {
       headers: this.getHeaders()
     });
   }
 
   delete(id: number): Observable<any> {
-    return this.http.delete<any>(`${this.api}/styles/${id}`, {
+    return this.http.delete<any>(`${this.api}/products/${id}`, {
       headers: this.getHeaders()
     });
   }

@@ -14,7 +14,7 @@ export interface LoginResponse {
 })
 export class AuthService {
 
-  private api = `http://localhost:8000/api`;
+  private api = `https://moving-firefly-neatly.ngrok-free.app/api`;
 
   constructor(private http: HttpClient) { }
 

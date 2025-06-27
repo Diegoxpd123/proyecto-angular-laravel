@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 @Injectable({ providedIn: 'root' })
 export class GenreService {
 
-  private api = 'http://localhost:8000/api';
+  private api = 'https://moving-firefly-neatly.ngrok-free.app/api';
 
   constructor(private http: HttpClient) { }
 

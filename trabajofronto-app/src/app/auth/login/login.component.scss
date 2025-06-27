@@ -1,18 +1,19 @@
 .contenedo-login {
   width: 100%;
   min-height: 100dvh;
-  background-color: #FAFAFA; // fondo general claro
+  background-color: #FAFAFA;
   display: grid;
   place-items: center;
+  padding: 1rem;
 }
 
 .login-container {
+  width: 100%;
   max-width: 400px;
-  margin: 0 auto;
   padding: 2rem;
   border-radius: 1rem;
   background-color: #FFFFFF;
-  color: #212121; // texto gris oscuro
+  color: #212121;
   box-shadow: 0 0 15px rgba(0, 0, 0, 0.1);
 
   display: flex;
@@ -30,7 +31,7 @@
 
     mat-icon {
       font-size: 28px;
-      color: #2196F3; // color primario azul suave
+      color: #2196F3;
     }
   }
 
@@ -62,11 +63,11 @@
     font-size: 1rem;
     border-radius: 0.5rem;
     text-transform: none;
-    background-color: #2196F3; // botón azul primario
+    background-color: #2196F3;
     color: white;
 
     &:hover {
-      background-color: #1976D2; // variante más intensa del primario
+      background-color: #1976D2;
     }
   }
 
@@ -75,20 +76,25 @@
     background-color: #D0D0D0;
 
     .mat-progress-bar-fill::after {
-      background-color: #2196F3; // azul suave
+      background-color: #2196F3;
     }
   }
 
-  @media screen and (max-width: 600px) {
-    padding: 1.5rem 1rem;
+  // Mejoras para pantallas pequeñas
+  @media screen and (max-width: 480px) {
+    padding: 1.25rem 1rem;
 
     h2 {
-      font-size: 1.4rem;
+      font-size: 1.3rem;
     }
 
     button {
       padding: 0.65rem;
       font-size: 0.95rem;
+    }
+
+    .full-width {
+      margin-bottom: 0.75rem;
     }
   }
 }

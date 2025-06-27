@@ -16,6 +16,7 @@ use App\Http\Controllers\ProductController;
 use App\Http\Controllers\UserController;
 use App\Http\Controllers\StyleController;
 use App\Http\Controllers\AuthController;
+use App\Http\Controllers\UploadController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -31,6 +32,7 @@ Route::prefix('auth')->group(function () {
 });
 
 Route::middleware(['auth:api'])->group(function () {
+    Route::post('upload-image', [UploadController::class, 'uploadImage']);
     Route::apiResource('branches', BranchController::class);
     Route::apiResource('genres', GenreController::class);
     Route::apiResource('styles', StyleController::class);
